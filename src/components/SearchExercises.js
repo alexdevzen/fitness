@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
+import { exerciseOptions, fetchData } from "../utils/fetchData";
+
 const SearchExercises = () => {
+  const [search, setSearch] = useState("");
 
-const [search, setSearch] = useState('')
+  const handleSearch = async () => {
+    if (search) {
+      const exercisesData = await fetchData(
+        "https://exercisedb.p.rapidapi.com/exercises/bodyPart/back",
+        exerciseOptions
+      );
 
-const handleSearch = async () => {
-  if(search) {
-   // const exercisesData = await fetchData();
-  }
-
-}
-
-
+      console.log(exercisesData);
+    }
+  };
 
   return (
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
@@ -30,38 +33,40 @@ const handleSearch = async () => {
 
       <Box position="relative" mb="72px">
         <TextField
-        sx={{
-          input: {
-            fontWeight: '700',
-            border: 'none',
-            borderRadius: '4px'
-          },
-          width: { lg: '800px', xs: '350px' },
-          backgroundColor: '#fff', borderRadius: '40px'
-        }}
+          sx={{
+            input: {
+              fontWeight: "700",
+              border: "none",
+              borderRadius: "4px",
+            },
+            width: { lg: "800px", xs: "350px" },
+            backgroundColor: "#fff",
+            borderRadius: "40px",
+          }}
           height="76px"
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
-          placeholder="Buscar Ejercicios"ñ
+          placeholder="Buscar Ejercicios"
+          ñ
           type="text"
         />
 
-<Button className="search-btn"
-sx={{
-  bgcolor: '#FF2625',
-  color: '#fff',
-  textTransform: 'none',
-  width: { lg: '175px', xs: '80px'},
-  fontSize: { lg: '20px', xs: '14px'},
-  height: '56px',
-  position: "absolute",
-  right: '0'
-}}
-onClick={handleSearch}
->
-  Buscar
-</Button>
-
+        <Button
+          className="search-btn"
+          sx={{
+            bgcolor: "#FF2625",
+            color: "#fff",
+            textTransform: "none",
+            width: { lg: "175px", xs: "80px" },
+            fontSize: { lg: "20px", xs: "14px" },
+            height: "56px",
+            position: "absolute",
+            right: "0",
+          }}
+          onClick={handleSearch}
+        >
+          Buscar
+        </Button>
       </Box>
     </Stack>
   );
