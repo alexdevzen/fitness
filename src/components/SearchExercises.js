@@ -1,51 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-
-// Import Components
 import { exerciseOptions, fetchData } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
-
+// Definición del componente funcional SearchExercises
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
-  const [search, setSearch] = useState("");
-  const [bodyParts, setBodyParts] = useState([]);
+  // Definición de estados locales usando el hook useState
+  const [search, setSearch] = useState(''); // Estado para almacenar el término de búsqueda
+  const [bodyParts, setBodyParts] = useState([]); // Estado para almacenar las partes del cuerpo
 
+  // Efecto secundario que se ejecuta una vez cuando el componente se monta
   useEffect(() => {
+    // Función asíncrona para cargar los datos de las partes del cuerpo
     const fetchExercisesData = async () => {
+      // Llamada a la función fetchData para obtener los datos de las partes del cuerpo
       const bodyPartsData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+        'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
         exerciseOptions
-        
       );
-
-      setBodyParts(["all", ...bodyPartsData]);
+      // Actualización del estado de las partes del cuerpo
+      setBodyParts(['all', ...bodyPartsData]);
     };
-
+    // Llamada a la función fetchExercisesData para cargar los datos
     fetchExercisesData();
-  }, []);
+  }, []); // El efecto se ejecuta solo una vez cuando el componente se monta, ya que el array de dependencias está vacío
 
+  // Función para manejar la búsqueda de ejercicios
   const handleSearch = async () => {
     if (search) {
-
+      // Llamada a la función fetchData para obtener los datos de ejercicios
       const exercisesData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises",
+        'https://exercisedb.p.rapidapi.com/exercises',
         exerciseOptions
-        );
-
-      const searchedExercises = exercisesData.filter(
-        (exercise) =>
-          exercise.name.toLowerCase().includes(search) ||
-          exercise.target.toLowerCase().includes(search) ||
-          exercise.equipment.toLowerCase().includes(search) ||
-          exercise.bodyPart.toLowerCase().includes(search) 
-        
       );
+      // Filtrado de ejercicios que coincidan con el término de búsqueda
+      const searchedExercises = exercisesData.filter((exercise) =>
+        exercise.name.toLowerCase().includes(search)
+        || exercise.target.toLowerCase().includes(search)
+        || exercise.bodyPart.toLowerCase().includes(search)
+        || exercise.equipment.toLowerCase().includes(search)
+      );
+      // Reiniciar el término de búsqueda
       setSearch("");
-
+      // Actualizar el estado de los ejercicios con los ejercicios filtrados
       setExercises(searchedExercises);
-      
     }
   };
+
 
 
   return (

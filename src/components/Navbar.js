@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Stack } from "@mui/material";
-
 import Logo from "../assets/images/Logo.png";
 
 const Navbar = () => {
@@ -13,7 +12,7 @@ const Navbar = () => {
         gap: { sm: "122px", xs: "40px" },
         mt: { sm: "32px", xs: "20px" },
         justifyContent: "none",
-        px: '20px'
+        px: "20px",
       }}
     >
       <Link to="/">
