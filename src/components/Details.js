@@ -51,12 +51,12 @@ const Details = ({ exerciseDetail }) => {
                 style={{ width: "50px", height: "50px" }}
               />
             </Button>
-
             <Typography textTransform="capitalize" variant="h7">
               {item.name}
             </Typography>
           </Stack>
         ))}
+        
       </Stack>
     </Stack>
   );
