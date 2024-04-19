@@ -6,6 +6,7 @@ const ExerciseCard = ({ exercise }) => {
   return (
     <Link className="exercise-card" to={`/exercise/${exercise.id}`}>
       <img src={exercise.gifUrl} alt={exercise.name} loading="lazy" />
+
       <Stack direction="row">
         <Button
           sx={{
@@ -19,6 +20,7 @@ const ExerciseCard = ({ exercise }) => {
         >
           {exercise.bodyPart}
         </Button>
+
         <Button
           sx={{
             ml: "21px",
@@ -32,6 +34,7 @@ const ExerciseCard = ({ exercise }) => {
           {exercise.target}
         </Button>
       </Stack>
+
       <Typography
         ml="21px"
         color="#000"

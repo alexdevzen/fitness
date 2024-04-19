@@ -13,6 +13,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     indexOfFirstExercise,
     indexOfLastExercise
   );
+  
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1800, behavior: "smooth" });
@@ -48,7 +49,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         sx={{ gap: { lg: "110px", xs: "50px" } }}
         flexWrap="wrap"
         justifyContent="center"
-      >
+       >
         {exercises.map((exercise, index) => (
           <ExerciseCard key={index} exercise={exercise} />
         ))}

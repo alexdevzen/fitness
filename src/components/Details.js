@@ -27,8 +27,10 @@ const Details = ({ exerciseDetail }) => {
       sx={{ flexDirection: { lg: "row" }, p: "20px", alignItems: "center" }}
     >
       <img src={gifUrl} alt={name} loading="lazy" className="detail-image" />
+
       <Stack sx={{ gap: { lg: "35px", xs: "20px" } }}>
         <Typography variant="h4">{name}</Typography>
+
         <Typography variant="h7">
           Exercises keep you strong. {name} {``}
           is one of the best exercises to target your {target}. It will help you
@@ -51,12 +53,12 @@ const Details = ({ exerciseDetail }) => {
                 style={{ width: "50px", height: "50px" }}
               />
             </Button>
+
             <Typography textTransform="capitalize" variant="h7">
               {item.name}
             </Typography>
           </Stack>
         ))}
-        
       </Stack>
     </Stack>
   );
